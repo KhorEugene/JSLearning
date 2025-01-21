@@ -78,31 +78,54 @@
             flex-direction: column; /* Items stack vertically */
         }
 
-        .book-card {
+        /* .book-card {
             border: 1px solid #ccc;
             padding: 15px;
             border-radius: 5px;
             margin: 5px;
             width: 90%;
-            /* aspect-ratio: 1 / 1.5; */
-            /* height: 200px; */
-            /* flex: column; */
-            box-sizing: border-box; /* Important for percentage widths */
-            display: flex;              /* Enable flexbox for card content */
-            flex-direction: column;     /* Stack content vertically */
-            align-items: center;       /* Center content horizontally */
+            box-sizing: border-box;
+            display: flex;         
+            flex-direction: column;
+            align-items: center;   
             justify-content: space-between;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        } */
+
+        .book-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 5px;
+            /* width: 150px; */
+            height: 250px;          /* Set a fixed height */
+            box-sizing: border-box; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Added: This is key to prevent content spill */
+            /* width: min-content; */
         }
 
-        .card-metadata {
+        /* .card-metadata {
             color: black;
+        } */
+
+        .card-metadata {
+            overflow: hidden;   /* Contain overflow within metadata */
+            text-overflow: ellipsis; /* Add ellipsis (...) if text overflows*/
+            display: -webkit-box; /* For multi-line truncation */
+            -webkit-line-clamp: 3; /* Limit to 3 lines */
+            -webkit-box-orient: vertical;
         }
 
         .book-cover {
             width: 100px;
-            height: 100px;/* Maintain aspect ratio */
+            height: 100px;
             background-color: #f2f2f2; /* Light gray placeholder */
             border: 1px dashed #ccc; /* Dashed border */
             display: flex;
@@ -111,6 +134,12 @@
             margin-top: 5px; /* Space between content and buttons*/
             margin-bottom: 5px; /* Space below the image */
             aspect-ratio: 1 / 1.5;
+        }
+
+        .book-cover img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Or cover, depending on how you want images to fit */
         }
 
         .button-container {
