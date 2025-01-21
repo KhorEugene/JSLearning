@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header {
+            position: fixed; /* Keeps the header in place */
+            top: 0; /* Positions it at the top */
+            left: 0; /* Positions it at the left edge */
+            width: 100%; /* Makes it span the entire width */
+            /* Add styling as needed */
+            height: 30px;
+            background-color: black; /* Example background color */
+            padding: 10px;
+            color: white;
+            z-index: 100; /* Ensures the header is on top of other content */
+            display: flex; /* Enable flexbox */
+            align-items: center; /* Center vertically */
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;        /* Use flexbox for layout */
+            min-height: 100vh; /* Ensure content fills viewport height */
+            overflow-x: hidden;     /* Prevent horizontal scroll if needed*/
+        }
+
+        #main-content {
+            flex: 1; /* Takes up remaining space */
+            padding: 10px;
+            box-sizing: border-box;
+            padding-top: 50px; /* Account for fixed header */
+            overflow-y: auto;          /* Enable scrolling for main content */
+
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+            grid-template-columns: repeat(4, 1fr); /* Example */
+            grid-gap: 0px; /* Space between grid items */
+            justify-content: center;
+            padding-top: 50px;
+            width: 100%;
+        }
+
+        @media (max-width: 850px) { /* Adjust the breakpoint as needed */
+            #main-content {
+                grid-template-columns: repeat(3, 1fr); /* Switch to 3 columns on smaller screens */
+            }
+        }
+
+        @media (max-width: 700px) { /* Adjust the breakpoint as needed */
+            #main-content {
+                grid-template-columns: repeat(2, 1fr); /* Switch to 3 columns on smaller screens */
+            }
+        }
+
+        @media (max-width: 500px) { /* Adjust the breakpoint as needed */
+            #main-content {
+                grid-template-columns: repeat(1, 1fr); /* Switch to 3 columns on smaller screens */
+            }
+        }
+
+        #form-container {
+            width: 200px;
+            background-color: #f0f0f0; /* Light gray background */
+            padding: 10px;
+            box-sizing: border-box;
+            border-left: 1px solid #ccc;
+            position: sticky; /* Keeps the form in view on scroll */
+            top: 50px; /* Adjust as needed based on your header height */
+            max-height: calc(100vh - 50px);  /* Limit height to viewport minus header */
+
+            display: flex;
+            flex-direction: column; /* Items stack vertically */
+        }
+
+        .book-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 5px;
+            width: 90%;
+            /* aspect-ratio: 1 / 1.5; */
+            /* height: 200px; */
+            /* flex: column; */
+            box-sizing: border-box; /* Important for percentage widths */
+            display: flex;              /* Enable flexbox for card content */
+            flex-direction: column;     /* Stack content vertically */
+            align-items: center;       /* Center content horizontally */
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .card-metadata {
+            color: black;
+        }
+
+        .book-cover {
+            width: 100px;
+            height: 100px;/* Maintain aspect ratio */
+            background-color: #f2f2f2; /* Light gray placeholder */
+            border: 1px dashed #ccc; /* Dashed border */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px; /* Space between content and buttons*/
+            margin-bottom: 5px; /* Space below the image */
+            aspect-ratio: 1 / 1.5;
+        }
+
+        .button-container {
+            display: flex;          /* Enable flexbox for button layout */
+            justify-content: space-around; /* Space buttons evenly */
+            width: 100%; /*Buttons occupy full width*/
+            margin-top: 5px; /* Space between content and buttons*/
+        }
+
+        .button-container button {
+            background-color: transparent; /* No background color */
+            border: None;                /* No border */
+            padding: 10px 5px;         /* Adjust padding as needed */
+            margin: 1px;               /* Add margin around buttons */
+            cursor: pointer;             /* Make it look clickable */
+            border-radius: 5px;        /* Rounded corners, optional */
+        }
+
+        .book-card.read {
+            background-color: green;
+        }
+
+        .toggle-read-button {
+            color: #4CAF50; /* Green for "Read" */
+        }
+
+        .toggle-read-button:hover{
+            background-color: #ddffdd;  /* Light green on hover */
+        }
+
+        .book-card.read .toggle-read-button {  /* Style for "read" cards */
+            color: #a60000; /* Red for "Read" on read books */
+        }
+
+        .book-card.read .toggle-read-button:hover{  /* Style for "read" cards on hover */
+            background-color: #ffd9d9;  /* Light red on hover */
+        }
+
+        .show-id-button {  /* Style for "Delete" button */
+            color: #DC3545;  /* Red */
+        }
+
+        .show-id-button:hover{  /* Style for "Delete" button on hover */
+            background-color: #ffe0e3; /* Light red */
+        }
+
+        .book-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .book-pages {
+            font-style: italic;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        #add-book-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;  /* Occupy full width of the container */
+            margin: 0;      /* Remove default margin */
+            padding: 0; /*No additional padding*/
+        }
+
+        #add-book-form label {
+            margin-bottom: 5px;
+        }
+
+        #add-book-form input {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        #add-book-form button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        #add-book-form button.cancel-button {
+            background-color: #DC3545; /* Red color for Cancel */
+        }
+        #add-book-form button:not(.cancel-button){ /* Green for Add Book */
+            background-color: #4CAF50;
+        }
+        #show-form-button {
+            display: none; /* Hide the "Add Book" button */
+        }
+
+    </style>
+</head>
+<body>
+    <header><b>Core Library</b></header>
+        <div id="form-container">
+            <button id="show-form-button">Add New Book</button>
+
+            <form id="add-book-form">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+            
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" required>
+            
+                <label for="pages">Pages</label>
+                <input type="number" id="pages" name="pages" required>
+            
+                <button type="submit">Add Book</button>
+                <!-- <button type="button" class="cancel-button" id="cancel-button">Cancel</button> -->
+            </form>
+        </div>
+        <div id="main-content"></div>
+
+<script src="library_project.js"></script>
+
+</body>
+</html>
