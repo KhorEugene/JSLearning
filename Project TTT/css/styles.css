@@ -1,0 +1,11 @@
+body {
+    font-family: sans-serif; /* Sets a default font for the page */
+    margin: 0; /* Resets default browser margins */
+    padding: 20px; /* Adds some padding for visual comfort */
+    background-color: #f4f4f4; /* Light gray background */
+}
+
+h1 {
+    color: #333; /* Dark gray heading color */
+    text-align: center; /* Centers the heading text */
+}
