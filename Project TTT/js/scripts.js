@@ -1,12 +1,34 @@
-// Select the <h1> element
-const heading = document.querySelector("h1");
+// manage the tic tac toe board
+function GameBoard(){
+  let gameBoard = []; // 3 x 3 matrix to store tictactoe board state
+  const getGameBoard =()=> gameBoard;
+  
+  const addMark = (player, row, column) => {
+    // Add cross or circle to board
+  };
+};
 
-// Add an event listener to the heading.  When clicked, change the text color
-heading.addEventListener("click", function() {
-  // Toggle the text color between dark gray and blue
-  if (heading.style.color === "blue") {
-    heading.style.color = "#333"; // Back to dark gray
-  } else {
-    heading.style.color = "blue";
+// Manages the flow of the game
+function GameController(){
+  const players = [];  // array of 2 players
+  let activePlayer = "";
+  const getActivePlayer = () => activePlayer;
+  const switchPlayerTurn = () => {
+    // switch active player
+  };
+
+  const playTurn =(row, column)=>{
+    // let the player play a turn
   }
-});
+}
+
+
+// function ScreenController(board){
+//   const updateScreen = () => {
+
+//   };
+
+//   const clickHandlerBoard = () => {
+
+//   };
+// };
