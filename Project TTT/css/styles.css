@@ -9,3 +9,29 @@ h1 {
     color: #333; /* Dark gray heading color */
     text-align: center; /* Centers the heading text */
 }
+
+.status-bar {
+    color: red; /* Dark gray heading color */
+    text-align: center; /* Centers the heading text */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+  }
+  
+  td {
+    border: 3px solid black;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 60px;
+    cursor: pointer; /* Indicate it's clickable */
+  }
