@@ -3,12 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div id="landing-page">
+  <!-- <div id="landing-page" style="display: none;"> -->
+    <h1>Tic-Tac-Toe</h1>
+    <form id="player-form">
+      <label for="player1">Player 1 Name:</label>
+      <input type="text" id="player1" name="player1" required><br><br>
 
-    <h1>Hello, World!</h1>
+      <label for="player2">Player 2 Name:</label>
+      <input type="text" id="player2" name="player2" required><br><br>
+
+      <button type="button" id="start-game">Start Game</button>
+    </form>
+    <p class="landing-status-bar"></p>
+  </div>
+    
+  <!-- <div id="game-page"> -->
+  <div id="game-page" style="display: none;">
+    <div class="button-container">
+      <button class="change-players">Change Players</button>
+      <button class="reset-btn">Reset Game</button>
+    </div>
+    <p class="status-bar"></p>
+    <table>
+        <tr>
+          <td id="cell"></td>
+          <td id="cell"></td>
+          <td id="cell"></td>
+        </tr>
+        <tr>
+          <td id="cell"></td>
+          <td id="cell"></td>
+          <td id="cell"></td>
+        </tr>
+        <tr>
+          <td id="cell"></td>
+          <td id="cell"></td>
+          <td id="cell"></td>
+        </tr>
+    </table>
+    
+  </div>
 
     <script src="js/scripts.js"></script>
 </body>
