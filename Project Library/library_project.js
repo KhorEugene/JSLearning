@@ -12,12 +12,19 @@ function generateUniqueId() {
   return `${timestamp}-${randomString}`; 
 }
 
-function Book(title, author, pages, read, bookId) {
+class Book{
+  constructor(title, author, pages, read, bookId) {
+    // invokes the setter
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.read1 = read;
     this.bookId = bookId;
+  }
+
+  set done(value) {
+      this.read = value;
+  }
 }
 
 function rerenderPage(library){
@@ -74,7 +81,7 @@ function toggleReadStatus(bookId) {
   const bookIndex = myLibrary.findIndex(book => book.bookId === bookId);
 
   if (bookIndex !== -1) {
-    myLibrary[bookIndex].read = !myLibrary[bookIndex].read; 
+    myLibrary[bookIndex].done = !myLibrary[bookIndex].read; 
     return true; // Indicate success
   } else {
     return false; // Indicate book not found
