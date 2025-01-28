@@ -7,8 +7,27 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div id="landing-page">
+  <!-- <div id="landing-page" style="display: none;"> -->
     <h1>Tic-Tac-Toe</h1>
-    <div class="button-container"><button class="reset-btn">Reset Game</button></div>
+    <form id="player-form">
+      <label for="player1">Player 1 Name:</label>
+      <input type="text" id="player1" name="player1" required><br><br>
+
+      <label for="player2">Player 2 Name:</label>
+      <input type="text" id="player2" name="player2" required><br><br>
+
+      <button type="button" id="start-game">Start Game</button>
+    </form>
+    <p class="landing-status-bar"></p>
+  </div>
+    
+  <!-- <div id="game-page"> -->
+  <div id="game-page" style="display: none;">
+    <div class="button-container">
+      <button class="change-players">Change Players</button>
+      <button class="reset-btn">Reset Game</button>
+    </div>
     <p class="status-bar"></p>
     <table>
         <tr>
@@ -28,7 +47,7 @@
         </tr>
     </table>
     
-    
+  </div>
 
     <script src="js/scripts.js"></script>
 </body>

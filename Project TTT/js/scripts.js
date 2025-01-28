@@ -42,7 +42,7 @@ function GameBoard(){
   // for visualising board on console
   const printBoard = () => {
     const boardWithCellValues = gameBoard.map((row) => row.map((cell) => cell.getValue()));
-    console.log(boardWithCellValues);
+    // console.log(boardWithCellValues);
   };
 
   return {
@@ -90,11 +90,11 @@ function GameController(
   const printCurrentBoard = () => {
     board.printBoard();
     if (winState){
-      console.log(`${getActivePlayer().name} (${getActivePlayer().mark}) wins!`);
+      // console.log(`${getActivePlayer().name} (${getActivePlayer().mark}) wins!`);
     } else if (stalemateState) {
-      console.log(`Stalemate!`);
+      // console.log(`Stalemate!`);
     } else {
-      console.log(`${getActivePlayer().name}'s (${getActivePlayer().mark}) turn.`);
+      // console.log(`${getActivePlayer().name}'s (${getActivePlayer().mark}) turn.`);
     };
     
   };
@@ -112,7 +112,7 @@ function GameController(
   };
 
   const resetGame = () => {
-    console.log(`Game has reset`);
+    // console.log(`Game has reset`);
     activePlayer = players[0];
     board.resetBoard();
     winState = false;
@@ -213,15 +213,35 @@ function GameController(
   }
 }
 
-const game = GameController();
-
+let game = GameController();
 
 // DOM management code
-
 const cells = document.querySelectorAll("#cell");
 const statusbar = document.getElementsByClassName("status-bar")[0];
+const landingstatusbar = document.getElementsByClassName("landing-status-bar")[0];
 const resetGameBtn = document.getElementsByClassName("reset-btn")[0];
+const changePlayersBtn = document.getElementsByClassName("change-players")[0];
+const startGameButton = document.getElementById('start-game');
+const gamePage = document.getElementById('game-page');
+const landingPage = document.getElementById('landing-page');
 statusbar.textContent = `${game.getActivePlayer().name}'s (${game.getActivePlayer().mark}) turn.`;
+
+
+startGameButton.addEventListener('click', () => {
+  const player1Name = document.getElementById('player1').value;
+  const player2Name = document.getElementById('player2').value;
+
+  if (player1Name.trim() === "" || player2Name.trim() === "") {
+    landingstatusbar.textContent = "Please enter both player names.";
+    return; // prevent game start if names are empty
+  }
+
+  game = GameController(player1Name, player2Name);
+  statusbar.textContent = `${game.getActivePlayer().name}'s (${game.getActivePlayer().mark}) turn.`;
+
+  landingPage.style.display = 'none';
+  gamePage.style.display = 'block';
+});
 
 resetGameBtn.addEventListener("click", function() {
   game.resetGame();
@@ -230,6 +250,22 @@ resetGameBtn.addEventListener("click", function() {
     cell.textContent = "";
   });
 });
+
+changePlayersBtn.addEventListener("click", function() {
+  // Reset game first
+  game.resetGame();
+  cells.forEach((cell) => {
+    cell.textContent = "";
+  });
+
+  // Show landing page again
+  landingPage.style.display = 'block';
+  gamePage.style.display = 'none';
+
+  // Reset player names
+  document.getElementById('player1').value = "";
+  document.getElementById('player2').value = "";
+})
 
 cells.forEach((cell, index) => {
   cell.addEventListener("click", function() {

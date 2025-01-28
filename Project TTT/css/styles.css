@@ -15,9 +15,30 @@ h1 {
     text-align: center; /* Centers the heading text */
 }
 
+.landing-status-bar {
+    color: red; /* Dark gray heading color */
+    text-align: center; /* Centers the heading text */
+}
+
+#landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#player-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .button-container {
     display: flex;
     justify-content: center;
+}
+
+button {
+    margin: 5px;
 }
 
 table {
