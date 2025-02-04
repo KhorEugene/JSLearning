@@ -1,0 +1,154 @@
+header {
+    background-color: #f0f0f0;
+    /* Light gray background */
+    overflow: hidden;
+    /* Prevents tab content from overflowing */
+}
+
+nav {
+    float: left;
+    /* Arrange tabs horizontally */
+    border: 1px solid #ccc;
+    /* Add borders to tabs */
+    padding: 10px 15px;
+    /* Add padding for better spacing */
+    background-color: white;
+    /* White tab background */
+    cursor: pointer;
+    /* Indicate that it's clickable */
+}
+
+nav:hover {
+    background-color: #ddd;
+    /* Highlight on hover */
+}
+
+h1 {
+    color: #333;
+    font-family: sans-serif;
+}
+
+#content {
+    text-align: center;
+}
+
+/* Image Styles */
+#mainImg {
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    width: 500px;
+    /* Ensure image doesn't exceed container width */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+/* Paragraph Styles */
+p {
+    color: #555;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+/* Heading Styles */
+h2 {
+    color: #333;
+    font-family: sans-serif;
+    margin-top: 30px;
+}
+
+h3 {
+    color: #333;
+    font-family: sans-serif;
+    margin-top: 10px;
+}
+
+/* Specialty Grid Styles */
+.specialty-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.specialty {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    width: 250px;
+    /* Adjust width as needed for responsiveness */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow */
+}
+
+.specialty img {
+    border-radius: 5px;
+    max-width: 75%;
+    height: auto;
+}
+
+/* Link Styles */
+a {
+    color: #333;
+    text-decoration: underline;
+}
+
+
+/* Responsive Design (adjust breakpoints as needed) */
+@media (max-width: 768px) {
+    .specialty-grid {
+        flex-direction: column;
+        /* Stack specialties vertically on smaller screens */
+    }
+
+    .specialty {
+        width: 90%;
+        /* Occupy most of the width on smaller screens */
+        margin: 10px auto;
+    }
+}
+
+/* Menu page styles */
+#menubody {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+}
+#menubody h1, h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+#menubody .menu-section {
+    margin-bottom: 20px;
+}
+#menubody .menu-section ul {
+    list-style: none;
+    padding: 0;
+}
+#menubody .menu-section li {
+    margin-bottom: 5px;
+}
+
+/* About page styles */
+#aboutcontent {
+    font-family: 'Arial', sans-serif; /* Changed font */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+#aboutcontent section {
+    margin-bottom: 2rem;
+}
+#aboutcontent h2 {
+    color: #333;
+}
+#aboutcontent #contact a { /* Styling for contact links */
+    color: #007bff; /* Blue link color */
+    text-decoration: none;
+}
+#aboutcontent #contact a:hover {
+    text-decoration: underline;
+}
