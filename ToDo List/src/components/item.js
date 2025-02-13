@@ -1,7 +1,7 @@
 import { DBManager } from "../connectors/database"
 import { Note } from "./note"
 import { ChecklistItem } from "./checklistitem"
-import { generateShortId, genKeyString } from "../utils"
+import { genKeyString } from "../utils"
 
 // Class for item
 export function Item(
@@ -13,10 +13,12 @@ export function Item(
     notes=[],
     checklist=[]
 ){
+    // Initialize database connector
     const dbmanager = new DBManager();
 
     const getId = () => id;
 
+    // Load notes/CI from DB
     function loadNotes(item_id){
         let note = dbmanager.getStorage(genKeyString("item", "note", item_id));
         return JSON.parse(note)
@@ -41,6 +43,7 @@ export function Item(
         checklist = savedCI.map(CI => new ChecklistItem(CI.id, CI.content, CI.checked));
     }
 
+    // Function to save notes to DB
     function saveNotes(allNotes, item_id){
         let note_reps = allNotes.map(note => {
             const note_rep = {
@@ -52,6 +55,7 @@ export function Item(
         dbmanager.setStorage(genKeyString("item", "note", item_id), JSON.stringify(note_reps));
     }
 
+    // Function to save CI to DB
     function saveCI(allCI, item_id){
         let ci_reps = allCI.map(CI => {
             const ci_rep = {
@@ -64,32 +68,36 @@ export function Item(
         dbmanager.setStorage(genKeyString("item", "checklistitem", item_id), JSON.stringify(ci_reps));
     }
 
+    // Title management
     const setTitle = (newTitle) => {
         title = newTitle;
     };
 
     const getTitle = () => title;
 
+    // Description management
     const setDesc = (newDesc) => {
         description = newDesc;
     };
 
     const getDesc = () => description;
 
+    // Due Date Management
     const setDueDate = (newDueDate) => {
         dueDate = newDueDate;
     };
 
     const getDueDate = () => dueDate;
 
+    // Priority Management
     const setPriority = (newPriority) => {
         priority = newPriority;
     };
 
     const getPriority = () => priority;
 
-    const addNote = (content, id=generateShortId()) => {
-        let newNote = new Note(id, content)
+    // Notes Management
+    const addNote = (newNote) => {
         notes.push(newNote);
         saveNotes(notes, getId());
     }
@@ -100,8 +108,8 @@ export function Item(
 
     const getNotes = () => notes;
 
-    const addChecklistItem = (content, checked, id=generateShortId()) => {
-        let newCI = new ChecklistItem(id, content, checked);
+    // Checklist Management
+    const addChecklistItem = (newCI) => {
         checklist.push(newCI);
         saveCI(checklist, getId());
     }
